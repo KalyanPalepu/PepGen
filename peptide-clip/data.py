@@ -80,12 +80,6 @@ class PartnerPeptideCollator:
 
         batch['partner_input'] = pad_sequence(partner_input_list, batch_first=True, padding_value=0.)
         batch['partner_padding_mask'] = self.get_padding_mask(partner_input_list, batch['partner_input'])
-
-        # if torch.any(batch['peptide_input'].isnan() | batch['peptide_input'].isinf()):
-        #     print("peptide input nan")
-        
-        # if torch.any(batch['partner_input'].isnan() | batch['partner_input'].isinf()):
-        #     print("partner input nan")
         
         batch['labels'] = torch.arange(batch_size)
         batch['pdb_ids'] = [v['pdb_id'] for v in raw_batch]
